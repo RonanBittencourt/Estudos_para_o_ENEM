@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0c4f73" />
+  <meta
+    name="description"
+    content="Plano de estudos ENEM — ciclo de 3 semanas, organizado por dia, sessão e conteúdo."
+  />
+  <title>Plano de Estudos — Ciclo de 3 Semanas</title>
+
+  <style>
+    :root {
+      --navy: #0a4f72;
+      --navy-dark: #083c56;
+      --green: #6aaa4d;
+      --orange: #f0812b;
+      --purple: #7b5fa0;
+      --blue: #4d9dd1;
+      --blue-dark: #2e79ad;
+      --paper: #ffffff;
+      --bg: #edf3f6;
+      --border: #d7e0e5;
+      --text: #1f2933;
+      --muted: #67757f;
+      --shadow: 0 12px 35px rgba(16, 53, 72, 0.08);
+      --radius: 14px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(77, 157, 209, 0.08), transparent 30%),
+        linear-gradient(180deg, #f7fafb 0%, var(--bg) 100%);
+      line-height: 1.45;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(215, 224, 229, 0.9);
+    }
+
+    .header-inner {
+      width: min(1400px, 94%);
+      margin: 0 auto;
+      padding: 12px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .brand {
+      min-width: 0;
+    }
+
+    .brand h1 {
+      margin: 0;
+      color: var(--navy);
+      font-size: clamp(1rem, 2vw, 1.45rem);
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+    }
+
+    .brand p {
+      margin: 2px 0 0;
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .small-btn {
+      border: 1px solid var(--border);
+      color: var(--navy-dark);
+      background: #fff;
+      padding: 8px 11px;
+      border-radius: 10px;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .small-btn:hover {
+      background: #f2f7fa;
+    }
+
+    .hero {
+      width: min(1400px, 94%);
+      margin: 22px auto 16px;
+      padding: 24px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #0c557d 0%, #0a4564 100%);
+      color: #fff;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      right: -90px;
+      top: -120px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.07);
+    }
+
+    .hero h2 {
+      margin: 0 0 6px;
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
+      text-transform: uppercase;
+    }
+
+    .hero p {
+      margin: 0;
+      opacity: 0.91;
+      font-size: 0.9rem;
+    }
+
+    .toolbar {
+      width: min(1400px, 94%);
+      margin: 0 auto 18px;
+      display: grid;
+      grid-template-columns: minmax(220px, 1fr) auto;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .search {
+      position: relative;
+    }
+
+    .search input {
+      width: 100%;
+      border: 1px solid var(--border);
+      background: #fff;
+      border-radius: 12px;
+      padding: 12px 14px 12px 42px;
+      outline: none;
+      color: var(--text);
+      box-shadow: 0 5px 16px rgba(0,0,0,0.035);
+    }
+
+    .search input:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(77, 157, 209, 0.12);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      pointer-events: none;
+    }
+
+    .week-tabs {
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .week-tab {
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--navy-dark);
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-weight: 800;
+      font-size: 0.82rem;
+    }
+
+    .week-tab.active {
+      color: #fff;
+      border-color: transparent;
+      background: var(--navy);
+    }
+
+    main {
+      width: min(1400px, 94%);
+      margin: 0 auto 35px;
+    }
+
+    .week-section {
+      display: none;
+    }
+
+    .week-section.active {
+      display: block;
+      animation: fadeUp 0.22s ease;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(5px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .week-title {
+      color: #fff;
+      text-align: center;
+      font-size: 1rem;
+      font-weight: 900;
+      letter-spacing: 0.4px;
+      padding: 7px 12px;
+      margin: 0;
+      text-transform: uppercase;
+    }
+
+    .week-title.green {
+      background: var(--green);
+    }
+
+    .week-title.orange {
+      background: var(--orange);
+    }
+
+    .week-title.purple {
+      background: var(--purple);
+    }
+
+    .schedule {
+      background: var(--paper);
+      border: 1px solid var(--border);
+      border-top: 0;
+      border-radius: 0 0 var(--radius) var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      margin-bottom: 18px;
+    }
+
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+
+    .table thead th {
+      background: var(--blue);
+      color: #fff;
+      padding: 8px 10px;
+      font-size: 0.84rem;
+      font-weight: 900;
+      text-align: center;
+    }
+
+    .table th:first-child,
+    .table td:first-child {
+      width: 90px;
+    }
+
+    .table tbody td {
+      border-bottom: 1px solid #eef2f4;
+      padding: 8px 9px;
+      vertical-align: top;
+      font-size: 0.82rem;
+    }
+
+    .table tbody tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .day-cell {
+      color: var(--navy-dark);
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .content-cell {
+      min-height: 50px;
+    }
+
+    .content-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 7px;
+      line-height: 1.35;
+    }
+
+    .content-item + .content-item {
+      margin-top: 6px;
+    }
+
+    .subject {
+      font-weight: 800;
+      color: #253d4a;
+    }
+
+    .study-link {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px dashed transparent;
+      transition: 0.18s ease;
+    }
+
+    .study-link:hover {
+      color: var(--blue-dark);
+      border-color: currentColor;
+    }
+
+    .video-btn {
+      flex: 0 0 auto;
+      border: 0;
+      border-radius: 7px;
+      background: #eef6fb;
+      color: #1f6e9e;
+      padding: 3px 6px;
+      font-size: 0.68rem;
+      font-weight: 900;
+      margin-top: 1px;
+    }
+
+    .video-btn:hover {
+      background: #dcedf8;
+    }
+
+    .session-3 .content-cell {
+      background: #fbfdfe;
+    }
+
+    .empty {
+      color: #9aa6ae;
+      text-align: center;
+    }
+
+    .progress-area {
+      width: min(1400px, 94%);
+      margin: 0 auto 18px;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 10px;
+      align-items: center;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px 12px;
+    }
+
+    .progress-label {
+      font-size: 0.77rem;
+      font-weight: 800;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .progress-track {
+      height: 8px;
+      border-radius: 999px;
+      background: #e8eef1;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--blue), var(--green));
+      border-radius: inherit;
+      transition: width 0.25s ease;
+    }
+
+    .progress-value {
+      color: var(--navy);
+      font-size: 0.77rem;
+      font-weight: 900;
+      min-width: 42px;
+      text-align: right;
+    }
+
+    .footer {
+      width: min(1400px, 94%);
+      margin: 0 auto 35px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.76rem;
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      background: rgba(0, 24, 36, 0.78);
+      z-index: 100;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal {
+      width: min(980px, 100%);
+      background: #0b1520;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 25px 75px rgba(0,0,0,0.35);
+    }
+
+    .modal-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 12px 14px;
+      color: #fff;
+    }
+
+    .modal-title {
+      font-weight: 900;
+      font-size: 0.94rem;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .modal-close {
+      border: 0;
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      font-size: 1.25rem;
+      line-height: 1;
+    }
+
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #000;
+    }
+
+    .video-wrapper iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .modal-note {
+      margin: 0;
+      padding: 10px 14px 14px;
+      color: #afbdc7;
+      font-size: 0.74rem;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 20px;
+      transform: translate(-50%, 18px);
+      opacity: 0;
+      pointer-events: none;
+      background: #152530;
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-size: 0.8rem;
+      box-shadow: 0 10px 28px rgba(0,0,0,0.18);
+      transition: 0.2s ease;
+      z-index: 150;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    @media (max-width: 900px) {
+      .toolbar {
+        grid-template-columns: 1fr;
+      }
+
+      .week-tabs {
+        justify-content: flex-start;
+      }
+
+      .table {
+        table-layout: auto;
+      }
+
+      .table th:first-child,
+      .table td:first-child {
+        width: 76px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .header-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .header-actions {
+        width: 100%;
+        justify-content: flex-start;
+      }
+
+      .hero,
+      .toolbar,
+      .progress-area,
+      main,
+      .footer {
+        width: min(96%, 680px);
+      }
+
+      .hero {
+        padding: 18px;
+      }
+
+      .schedule {
+        overflow: visible;
+        border: 0;
+        box-shadow: none;
+        background: transparent;
+      }
+
+      .table,
+      .table thead,
+      .table tbody,
+      .table tr,
+      .table th,
+      .table td {
+        display: block;
+        width: 100% !important;
+      }
+
+      .table thead {
+        display: none;
+      }
+
+      .table tbody tr {
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        overflow: hidden;
+        margin-bottom: 12px;
+        box-shadow: var(--shadow);
+      }
+
+      .table tbody td {
+        border: 0;
+      }
+
+      .table tbody td:first-child {
+        background: #edf6fb;
+        border-bottom: 1px solid #dfeaf0;
+        padding: 9px 11px;
+      }
+
+      .table tbody td:not(:first-child) {
+        padding: 12px;
+      }
+
+      .day-cell {
+        display: block;
+        font-size: 0.86rem;
+      }
+
+      .content-cell::before {
+        content: attr(data-session);
+        display: block;
+        color: var(--blue-dark);
+        font-weight: 900;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        margin-bottom: 7px;
+      }
+
+      .session-3 .content-cell {
+        background: #fff;
+      }
+
+      .week-title {
+        border-radius: 12px 12px 0 0;
+      }
+
+      .progress-area {
+        grid-template-columns: 1fr auto;
+      }
+
+      .progress-label {
+        grid-column: 1 / -1;
+      }
+
+      .progress-track {
+        grid-column: 1;
+      }
+
+      .progress-value {
+        grid-column: 2;
+      }
+    }
+
+    @media (max-width: 460px) {
+      .hero h2 {
+        font-size: 1.08rem;
+      }
+
+      .hero p {
+        font-size: 0.78rem;
+      }
+
+      .week-tab {
+        flex: 1 1 auto;
+      }
+
+      .table tbody td {
+        font-size: 0.78rem;
+      }
+
+      .video-btn {
+        font-size: 0.63rem;
+      }
+    }
+
+    @media print {
+      .site-header,
+      .toolbar,
+      .progress-area,
+      .video-btn,
+      .footer,
+      .modal-backdrop {
+        display: none !important;
+      }
+
+      body {
+        background: #fff;
+      }
+
+      .week-section {
+        display: block !important;
+      }
+
+      .hero {
+        box-shadow: none;
+        margin-top: 0;
+      }
+
+      .schedule {
+        box-shadow: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <h1>Plano de Estudos — Ciclo de 3 Semanas</h1>
+        <p>Até 3 conteúdos por dia • teoria → exercícios ENEM → revisão curta</p>
+      </div>
+
+      <div class="header-actions">
+        <button class="small-btn" id="printBtn" type="button">Imprimir</button>
+        <button class="small-btn" id="resetBtn" type="button">Zerar progresso</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero" aria-label="Introdução">
+    <h2>Plano de Estudos — Ciclo de 3 Semanas</h2>
+    <p>Use os botões “Vídeo” para abrir a aula do YouTube dentro do próprio site.</p>
+  </section>
+
+  <section class="progress-area" aria-label="Progresso">
+    <span class="progress-label">Conteúdos marcados como estudados</span>
+    <div class="progress-track" aria-hidden="true">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+    <strong class="progress-value" id="progressValue">0%</strong>
+  </section>
+
+  <div class="toolbar">
+    <label class="search" aria-label="Buscar conteúdo">
+      <span class="search-icon">⌕</span>
+      <input id="searchInput" type="search" placeholder="Buscar matéria ou conteúdo..." autocomplete="off" />
+    </label>
+
+    <div class="week-tabs" role="tablist" aria-label="Selecionar semana">
+      <button class="week-tab active" data-week="week1" role="tab" aria-selected="true">Semana 1</button>
+      <button class="week-tab" data-week="week2" role="tab" aria-selected="false">Semana 2</button>
+      <button class="week-tab" data-week="week3" role="tab" aria-selected="false">Semana 3</button>
+    </div>
+  </div>
+
+  <main id="mainContent">
+    <section class="week-section active" id="week1" data-color="green">
+      <h2 class="week-title green">Semana 1</h2>
+      <div class="schedule">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Dia</th>
+              <th>Sessão 1</th>
+              <th>Sessão 2</th>
+              <th>Sessão 3</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="day-cell">Segunda</td>
+              <td class="content-cell" data-session="Sessão 1">
+                <div class="content-item" data-search="matemática razão e proporção">
+                  <input type="checkbox" class="study-check" aria-label="Concluir Matemática — Razão e Proporção">
+                  <a href="#" class="study-link video-trigger" data-subject="Matemática — Razão e Proporção" data-video="https://www.youtube.com/embed/VIDEO_ID_RAZAO_PROPORCAO">
+                    <span class="subject">Matemática</span> — Razão e Proporção
+                  </a>
+                  <button class="video-btn" type="button"
+                    data-title="Matemática — Razão e Proporção"
+                    data-video="https://www.youtube.com/embed/VIDEO_ID_RAZAO_PROPORCAO">Vídeo</button>
+                </div>
+              </td>
+              <td class="content-cell" data-session="Sessão 2">
+                <div class="content-item" data-search="biologia evolução">
+                  <input type="checkbox" class="study-check" aria-label="Concluir Biologia — Evolução">
+                  <span><span class="subject">Biologia</span> — Evolução</span>
+                </div>
+              </td>
+              <td class="content-cell session-3" data-session="Sessão 3">
+                <div class="content-item" data-search="linguagens variações linguísticas">
+                  <input type="checkbox" class="study-check" aria-label="Concluir Linguagens — Variações Linguísticas">
+                  <span><span class="subject">Linguagens</span> — Variações Linguísticas</span>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="day-cell">Terça</td>
+              <td class="content-cell" data-session="Sessão 1">
+                <div class="content-item" data-search="química orgânica">
+                  <input type="checkbox" class="study-check" aria-label="Concluir Química — Orgânica">
+                  <span><span class="subject">Química</span> — Orgânica</span>
+                </div>
+              </td>
+              <td class="content-cell" data-session="Sessão 2">
+                <div class="content-item" data-search="história brasil brasil colônia">
+                  <input type="checkbox" class="study-check" aria-label="Concluir História (Brasil) — Brasil Colônia">
+                  <span><span class="subject">História (Brasil)</span> — Brasil Colônia</span>
+                </div>
+              </td>
+              <td class="content-cell session-3" data-session="Sessão 3">
+                <div class="content-item" data-search="geografia geografia agrária">
+                  <input type="checkbox" class="study-check" aria-label="Concluir Geografia — Geografia agrária">
+                  <span><span class="subject">Geografia</span> — Geografia agrária</span>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="day-cell">Quarta</td>
+              <td class="content-cell" data-session="Sessão 1">
+                <div class="content-item" data-search="física circuitos">
+                  <input type="checkbox" class="study-check" aria-label="Concluir Física — Circuitos">
+                  <span><span class="subject">Física</span> — Circuitos</span>
+                </div>
+              </td>
+              <td class="content-cell" data-session="Sessão 2">
+                <div class="content-item" data-search="matemática regra de três">
+                  <input type="checkbox" class="study-check" aria-label="Concluir Matemática — Regra de três">
+                  <span><span class="subject">Matemática</span> — Regra de três</span>
+                </div>
+              </td>
+              <td class="content-cell session-3" data-session="Sessão 3">
+                <div class="content-item" data-search="filosofia antiguidade clássica">
+                  <input type="checkbox" class="study-check" aria-label="Concluir Filosofia — Antiguidade clássica">
+                  <span><span class="subject">Filosofia</span> — Antiguidade clássica</span>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="day-cell">Quinta</td>
+              <td class="content-cell" data-session="Sessão 1">
+                <div class="content-item" data-search="biologia citologia">
+                  <input type="checkbox" class="study-check" aria-label="Concluir Biologia — Citologia">
+                  <span><span class="subject">Biologia</span> — Citologia</span>
+                </div>
+              </td>
+              <td class="content-cell" data-session="Sessão 2">
+                <div class="content-item" data-search="história geral grécia e roma">
+                  <input type="checkbox" class="study-check" aria-label="Concluir História (Geral) — Grécia e Roma">
+                  <span><span class="subject">História (Geral)</span> — Grécia e Roma</span>
+                </div>
+              </td>
+              <td class="content-cell session-3" data-session="Sessão 3">
+                <div class="content-item" data-search="linguagens funções da linguagem">
+                  <input type="checkbox" class="study-check" aria-label="Concluir Linguagens — Funções da Linguagem">
+                  <span><span class="subject">Linguagens</span> — Funções da Linguagem</span>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="day-cell">Sexta</td>
+              <td class="content-cell" data-session="Sessão 1">
+                <div class="content-item" data-search="química funções inorgânicas">
+                  <input type="checkbox" class="study-check" aria-label="Concluir Química — Funções inorgânicas">
+                  <span><span class="subject">Química</span> — Funções inorgânicas</span>
+                </div>
+              </td>
+              <td class="content-cell" data-session="Sessão 2">
+                <div class="content-item" data-search="geografia geografia econômica">
+                  <input type="checkbox" class="study-check" aria-label="Concluir Geografia — Geografia Econômica">
+                  <span><span class="subject">Geografia</span> — Geografia Econômica</span>
+                </div>
+              </td>
+              <td class="content-cell session-3" data-session="Sessão 3">
+                <div class="content-item" data-search="história brasil segundo reinado">
+                  <input type="checkbox" class="study-check" aria-label="Concluir História (Brasil) — Segundo Reinado">
+                  <span><span class="subject">História (Brasil)</span> — Segundo Reinado</span>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="day-cell">Sábado</td>
+              <td class="content-cell" data-session="Sessão 1">
+                <div class="content-item" data-search="matemática estatística">
+                  <input type="checkbox" class="study-check" aria-label="Concluir Matemática — Estatística">
+                  <span><span class="subject">Matemática</span> — Estatística</span>
+                </div>
+              </td>
+              <td class="content-cell" data-session="Sessão 2">
+                <div class="content-item" data-search="biologia ecologia">
+                  <input type="checkbox" class="study-check" aria-label="Concluir Biologia — Ecologia">
+                  <span><span class="subject">Biologia</span> — Ecologia</span>
+                </div>
+              </td>
+              <td class="content-cell session-3" data-session="Sessão 3">
+                <div class="content-item" data-search="física ondulatória">
+                  <input type="checkbox" class="study-check" aria-label="Concluir Física — Ondulatória">
+                  <span><span class="subject">Física</span> — Ondulatória</span>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="day-cell">Domingo</td>
+              <td class="content-cell" data-session="Sessão 1">
+                <div class="content-item" data-search="química atomística">
+                  <input type="checkbox" class="study-check" aria-label="Concluir Química — Atomística">
+                  <span><span class="subject">Química</span> — Atomística</span>
+                </div>
+              </td>
+              <td class="content-cell" data-session="Sessão 2">
+                <div class="content-item" data-search="história geral idade média">
+                  <input type="checkbox" class="study-check" aria-label="Concluir História (Geral) — Idade Média">
+                  <span><span class="subject">História (Geral)</span> — Idade Média</span>
+                </div>
+              </td>
+              <td class="content-cell session-3" data-session="Sessão 3">
+                <div class="content-item" data-search="filosofia agostinho aquino">
+                  <input type="checkbox" class="study-check" aria-label="Concluir Filosofia — Agostinho e Aquino">
+                  <span><span class="subject">Filosofia</span> — Agostinho e Aquino</span>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="week-section" id="week2" data-color="orange">
+      <h2 class="week-title orange">Semana 2</h2>
+      <div class="schedule">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Dia</th>
+              <th>Sessão 1</th>
+              <th>Sessão 2</th>
+              <th>Sessão 3</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="day-cell">Segunda</td>
+              <td class="content-cell" data-session="Sessão 1">
+                <div class="content-item" data-search="matemática gráficos">
+                  <input type="checkbox" class="study-check" aria-label="Concluir Matemática — Gráficos">
+                  <span><span class="subject">Matemática</span> — Gráficos</span>
+                </div>
+              </td>
+              <td class="content-cell" data-session="Sessão 2">
+                <div class="content-item" data-search="biologia genética">
+                  <input type="checkbox" class="study-check" aria-label="Concluir Biologia — Genética">
+                  <span><span class="subject">Biologia</span> — Genética</span>
+                </div>
+              </td>
+              <td class="content-cell session-3" data-session="Sessão 3">
+                <div class="content-item" data-search="linguagens gêneros textuais">
+                  <input type="checkbox" class="study-check" aria-label="Concluir Linguagens — Gêneros textuais">
+                  <span><span class="subject">Linguagens</span> — Gêneros textuais</span>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="day-cell">Terça</td>
+              <td class="content-cell" data-session="Sessão 1">
+                <div class="content-item" data-search="química forças intermoleculares">
+                  <input type="checkbox" class="study-check" aria-label="Concluir Química — Forças intermoleculares">
+                  <span><span class="subject">Química</span> — Forças intermoleculares</span>
+                </div>
+              </td>
+              <td class="content-cell" data-session="Sessão 2">
+                <div class="content-item" data-search="história brasil primeira república">
+                  <input type="checkbox" class="study-check" aria-label="Concluir História (Brasil) — Primeira República">
+                  <span><span class="subject">História (Brasil)</span> — Primeira República</span>
+                </div>
+              </td>
+              <td class="content-cell session-3" data-session="Sessão 3">
+                <div class="content-item" data-search="geografia urbanização população">
+                  <input type="checkbox" class="study-check" aria-label="Concluir Geografia — Urbanização e população">
+                  <span><span class="subject">Geografia</span> — Urbanização e população</span>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="day-cell">Quarta</td>
+              <td class="content-cell" data-session="Sessão 1">
+                <div class="content-item" data-search="física cinemática dinâmica">
+                  <input type="checkbox" class="study-check" aria-label="Concluir Física — Cinemática e Dinâmica">
+                  <span><span class="subject">Física</span> — Cinemática e Dinâmica</span>
+                </div>
+              </td>
+              <td class="content-cell" data-session="Sessão 2">
+                <div class="content-item" data-search="filosofia descartes">
+                  <input type="checkbox" class="study-check" aria-label="Concluir Filosofia — Descartes">
+                  <span><span class="subject">Filosofia</span> — Descartes</span>
+                </div>
+              </td>
+              <td class="content-cell session-3" data-session="Sessão 3">
+                <div class="content-item" data-search="história geral revoluções">
+                  <input type="checkbox" class="study-check" aria-label="Concluir História (Geral) — Revoluções">
+                  <span><span class="subject">História (Geral)</span> — Revoluções</span>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="day-cell">Quinta</td>
+              <td class="content-cell" data-session="Sessão 1">
+                <div class="content-item" data-search="biologia botânica">
+                  <input type="checkbox" class="study-check" aria-label="Concluir Biologia — Botânica">
+                  <span><span class="subject">Biologia</span> — Botânica</span>
+                </div>
+              </td>
+              <td class="content-cell" data-session="Sessão 2">
+                <div class="content-item" data-search="química eletroquímica">
+                  <input type="checkbox" class="study-check" aria-label="Concluir Química — Eletroquímica">
+                  <span><span class="subject">Química</span> — Eletroquímica</span>
+                </div>
+              </td>
+              <td class="content-cell session-3" data-session="Sessão 3">
+                <div class="content-item" data-search="linguagens escolas literárias vanguardas europeias">
+                  <input type="checkbox" class="study-check" aria-label="Concluir Linguagens — Escolas literárias e vanguardas europeias">
+                  <span><span class="subject">Linguagens</span> — Escolas literárias e vanguardas europeias</span>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="day-cell">Sexta</td>
+              <td class="content-cell" data-session="Sessão 1">
+                <div class="content-item" data-search="história brasil era vargas">
+                  <input type="checkbox" class="study-check" aria-label="Concluir História (Brasil) — Era Vargas">
+                  <span><span class="subject">História (Brasil)</span> — Era Vargas</span>
+                </div>
+              </td>
+              <td class="content-cell" data-session="Sessão 2">
+                <div class="content-item" data-search="geografia domínios morfoclimáticos">
+                  <input type="checkbox" class="study-check" aria-label="Concluir Geografia — Domínios morfoclimáticos">
+                  <span><span class="subject">Geografia</span> — Domínios morfoclimáticos</span>
+                </div>
+              </td>
+              <td class="content-cell session-3" data-session="Sessão 3">
+                <div class="content-item" data-search="filosofia iluministas">
+                  <input type="checkbox" class="study-check" aria-label="Concluir Filosofia — Iluministas">
+                  <span><span class="subject">Filosofia</span> — Iluministas</span>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="day-cell">Sábado</td>
+              <td class="content-cell" data-session="Sessão 1">
+                <div class="content-item" data-search="história geral imperialismo">
+                  <input type="checkbox" class="study-check" aria-label="Concluir História (Geral) — Imperialismo">
+                  <span><span class="subject">História (Geral)</span> — Imperialismo</span>
+                </div>
+              </td>
+              <td class="content-cell" data-session="Sessão 2">
+                <div class="content-item" data-search="biologia saúde doenças">
+                  <input type="checkbox" class="study-check" aria-label="Concluir Biologia — Saúde (doenças)">
+                  <span><span class="subject">Biologia</span> — Saúde (doenças)</span>
+                </div>
+              </td>
+              <td class="content-cell session-3" data-session="Sessão 3">
+                <div class="content-item" data-search="física termologia">
+                  <input type="checkbox" class="study-check" aria-label="Concluir Física — Termologia">
+                  <span><span class="subject">Física</span> — Termologia</span>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="day-cell">Domingo</td>
+              <td class="content-cell" data-session="Sessão 1">
+                <div class="content-item" data-search="matemática probabilidade">
+                  <input type="checkbox" class="study-check" aria-label="Concluir Matemática — Probabilidade">
+                  <span><span class="subject">Matemática</span> — Probabilidade</span>
+                </div>
+              </td>
+              <td class="content-cell" data-session="Sessão 2">
+                <div class="content-item" data-search="química cinética">
+                  <input type="checkbox" class="study-check" aria-label="Concluir Química — Cinética">
+                  <span><span class="subject">Química</span> — Cinética</span>
+                </div>
+              </td>
+              <td class="content-cell session-3" data-session="Sessão 3">
+                <div class="content-item" data-search="filosofia nietzsche foucault arendt">
+                  <input type="checkbox" class="study-check" aria-label="Concluir Filosofia — Nietzsche, Foucault, Arendt">
+                  <span><span class="subject">Filosofia</span> — Nietzsche, Foucault, Arendt</span>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="week-section" id="week3" data-color="purple">
+      <h2 class="week-title purple">Semana 3</h2>
+      <div class="schedule">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Dia</th>
+              <th>Sessão 1</th>
+              <th>Sessão 2</th>
+              <th>Sessão 3</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="day-cell">Segunda</td>
+              <td class="content-cell" data-session="Sessão 1">
+                <div class="content-item" data-search="matemática geometria espacial">
+                  <input type="checkbox" class="study-check" aria-label="Concluir Matemática — Geometria espacial">
+                  <span><span class="subject">Matemática</span> — Geometria espacial</span>
+                </div>
+              </td>
+              <td class="content-cell" data-session="Sessão 2">
+                <div class="content-item" data-search="geografia hidrografia climatologia">
+                  <input type="checkbox" class="study-check" aria-label="Concluir Geografia — Hidrografia e Climatologia">
+                  <span><span class="subject">Geografia</span> — Hidrografia e Climatologia</span>
+                </div>
+              </td>
+              <td class="content-cell session-3" data-session="Sessão 3">
+                <div class="content-item" data-search="filosofia indústria cultural">
+                  <input type="checkbox" class="study-check" aria-label="Concluir Filosofia — Indústria cultural">
+                  <span><span class="subject">Filosofia</span> — Indústria cultural</span>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="day-cell">Terça</td>
+              <td class="content-cell" data-session="Sessão 1">
+                <div class="content-item" data-search="revisão matemática questões dos conteúdos estudados">
+                  <input type="checkbox" class="study-check" aria-label="Concluir Revisão — Matemática — questões dos conteúdos estudados">
+                  <span><span class="subject">REVISÃO — Matemática</span> — questões dos conteúdos estudados</span>
+                </div>
+              </td>
+              <td class="content-cell" data-session="Sessão 2">
+                <div class="content-item" data-search="revisão biologia questões dos conteúdos estudados">
+                  <input type="checkbox" class="study-check" aria-label="Concluir Revisão — Biologia — questões dos conteúdos estudados">
+                  <span><span class="subject">REVISÃO — Biologia</span> — questões dos conteúdos estudados</span>
+                </div>
+              </td>
+              <td class="content-cell session-3 empty" data-session="Sessão 3">—</td>
+            </tr>
+
+            <tr>
+              <td class="day-cell">Quarta</td>
+              <td class="content-cell" data-session="Sessão 1">
+                <div class="content-item" data-search="revisão química questões dos conteúdos estudados">
+                  <input type="checkbox" class="study-check" aria-label="Concluir Revisão — Química — questões dos conteúdos estudados">
+                  <span><span class="subject">REVISÃO — Química</span> — questões dos conteúdos estudados</span>
+                </div>
+              </td>
+              <td class="content-cell" data-session="Sessão 2">
+                <div class="content-item" data-search="revisão física questões dos conteúdos estudados">
+                  <input type="checkbox" class="study-check" aria-label="Concluir Revisão — Física — questões dos conteúdos estudados">
+                  <span><span class="subject">REVISÃO — Física</span> — questões dos conteúdos estudados</span>
+                </div>
+              </td>
+              <td class="content-cell session-3 empty" data-session="Sessão 3">—</td>
+            </tr>
+
+            <tr>
+              <td class="day-cell">Quinta</td>
+              <td class="content-cell" data-session="Sessão 1">
+                <div class="content-item" data-search="revisão linguagens questões interpretação">
+                  <input type="checkbox" class="study-check" aria-label="Concluir Revisão — Linguagens — questões + interpretação">
+                  <span><span class="subject">REVISÃO — Linguagens</span> — questões + interpretação</span>
+                </div>
+              </td>
+              <td class="content-cell" data-session="Sessão 2">
+                <div class="content-item" data-search="revisão história questões dos conteúdos estudados">
+                  <input type="checkbox" class="study-check" aria-label="Concluir Revisão — História — questões dos conteúdos estudados">
+                  <span><span class="subject">REVISÃO — História</span> — questões dos conteúdos estudados</span>
+                </div>
+              </td>
+              <td class="content-cell session-3 empty" data-session="Sessão 3">—</td>
+            </tr>
+
+            <tr>
+              <td class="day-cell">Sexta</td>
+              <td class="content-cell" data-session="Sessão 1">
+                <div class="content-item" data-search="revisão geografia questões dos conteúdos estudados">
+                  <input type="checkbox" class="study-check" aria-label="Concluir Revisão — Geografia — questões dos conteúdos estudados">
+                  <span><span class="subject">REVISÃO — Geografia</span> — questões dos conteúdos estudados</span>
+                </div>
+              </td>
+              <td class="content-cell" data-session="Sessão 2">
+                <div class="content-item" data-search="revisão filosofia questões dos conteúdos estudados">
+                  <input type="checkbox" class="study-check" aria-label="Concluir Revisão — Filosofia — questões dos conteúdos estudados">
+                  <span><span class="subject">REVISÃO — Filosofia</span> — questões dos conteúdos estudados</span>
+                </div>
+              </td>
+              <td class="content-cell session-3 empty" data-session="Sessão 3">—</td>
+            </tr>
+
+            <tr>
+              <td class="day-cell">Sábado</td>
+              <td class="content-cell" data-session="Sessão 1">
+                <div class="content-item" data-search="simulado enem ciências humanas linguagens">
+                  <input type="checkbox" class="study-check" aria-label="Concluir SIMULADO — ENEM — Ciências Humanas e Linguagens">
+                  <span><span class="subject">SIMULADO — ENEM</span> — Ciências Humanas e Linguagens</span>
+                </div>
+              </td>
+              <td class="content-cell" data-session="Sessão 2">
+                <div class="content-item" data-search="revisão correção do simulado">
+                  <input type="checkbox" class="study-check" aria-label="Concluir REVISÃO — Correção do simulado">
+                  <span><span class="subject">REVISÃO</span> — Correção do simulado</span>
+                </div>
+              </td>
+              <td class="content-cell session-3 empty" data-session="Sessão 3">—</td>
+            </tr>
+
+            <tr>
+              <td class="day-cell">Domingo</td>
+              <td class="content-cell" data-session="Sessão 1">
+                <div class="content-item" data-search="simulado enem matemática ciências da natureza">
+                  <input type="checkbox" class="study-check" aria-label="Concluir SIMULADO — ENEM — Matemática e Ciências da Natureza">
+                  <span><span class="subject">SIMULADO — ENEM</span> — Matemática e Ciências da Natureza</span>
+                </div>
+              </td>
+              <td class="content-cell" data-session="Sessão 2">
+                <div class="content-item" data-search="revisão correção caderno de erros">
+                  <input type="checkbox" class="study-check" aria-label="Concluir REVISÃO — Correção + caderno de erros">
+                  <span><span class="subject">REVISÃO</span> — Correção + caderno de erros</span>
+                </div>
+              </td>
+              <td class="content-cell session-3 empty" data-session="Sessão 3">—</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    Vídeos são exibidos por incorporação do YouTube diretamente no modal, sem abrir uma página externa.
+    Para colocar suas aulas, substitua os valores <code>VIDEO_ID_...</code> pelos IDs reais dos vídeos.
+  </footer>
+
+  <div class="modal-backdrop" id="videoModal" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-head">
+        <div class="modal-title" id="modalTitle">Aula</div>
+        <button class="modal-close" id="closeModal" type="button" aria-label="Fechar vídeo">×</button>
+      </div>
+      <div class="video-wrapper">
+        <iframe
+          id="videoFrame"
+          src=""
+          title="Vídeo de estudo"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+          loading="lazy">
+        </iframe>
+      </div>
+      <p class="modal-note">
+        O player está incorporado na página. O navegador pode exigir uma interação para iniciar o vídeo com som.
+      </p>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const STORAGE_KEY = "plano-estudos-enem-progresso-v1";
+
+    const body = document.body;
+    const weekTabs = [...document.querySelectorAll(".week-tab")];
+    const weekSections = [...document.querySelectorAll(".week-section")];
+    const checks = [...document.querySelectorAll(".study-check")];
+    const searchInput = document.getElementById("searchInput");
+    const progressBar = document.getElementById("progressBar");
+    const progressValue = document.getElementById("progressValue");
+    const videoModal = document.getElementById("videoModal");
+    const videoFrame = document.getElementById("videoFrame");
+    const modalTitle = document.getElementById("modalTitle");
+    const closeModal = document.getElementById("closeModal");
+    const printBtn = document.getElementById("printBtn");
+    const resetBtn = document.getElementById("resetBtn");
+    const toast = document.getElementById("toast");
+
+    let storedProgress = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+
+    function normalize(text) {
+      return text
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\\u0300-\\u036f]/g, "");
+    }
+
+    function getCheckId(check) {
+      const item = check.closest(".content-item");
+      const section = check.closest(".week-section");
+      const day = check.closest("tr")?.querySelector(".day-cell")?.textContent.trim() || "";
+      const session = check.closest(".content-cell")?.dataset.session || "";
+      return `${section?.id || ""}|${day}|${session}|${item?.dataset.search || ""}`;
+    }
+
+    function saveProgress() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(storedProgress));
+    }
+
+    function updateProgress() {
+      const total = checks.length;
+      const done = checks.filter(check => check.checked).length;
+      const percent = total ? Math.round((done / total) * 100) : 0;
+      progressBar.style.width = `${percent}%`;
+      progressValue.textContent = `${percent}%`;
+    }
+
+    function loadProgress() {
+      checks.forEach(check => {
+        check.checked = Boolean(storedProgress[getCheckId(check)]);
+      });
+      updateProgress();
+    }
+
+    checks.forEach(check => {
+      check.addEventListener("change", () => {
+        storedProgress[getCheckId(check)] = check.checked;
+        saveProgress();
+        updateProgress();
+      });
+    });
+
+    weekTabs.forEach(tab => {
+      tab.addEventListener("click", () => {
+        const target = tab.dataset.week;
+
+        weekTabs.forEach(item => {
+          const active = item === tab;
+          item.classList.toggle("active", active);
+          item.setAttribute("aria-selected", active ? "true" : "false");
+        });
+
+        weekSections.forEach(section => {
+          section.classList.toggle("active", section.id === target);
+        });
+
+        filterContent();
+      });
+    });
+
+    function filterContent() {
+      const term = normalize(searchInput.value.trim());
+
+      weekSections.forEach(section => {
+        section.querySelectorAll("tbody tr").forEach(row => {
+          let visibleCells = 0;
+
+          row.querySelectorAll(".content-item").forEach(item => {
+            const match = !term || normalize(item.dataset.search || "").includes(term);
+            item.style.display = match ? "" : "none";
+            if (match) visibleCells++;
+          });
+
+          row.querySelectorAll(".content-cell:not(.empty)").forEach(cell => {
+            const items = [...cell.querySelectorAll(".content-item")];
+            const hasVisibleItem = items.some(item => item.style.display !== "none");
+            cell.style.display = hasVisibleItem || !term ? "" : "none";
+          });
+
+          const nonEmptyCellVisible = [...row.querySelectorAll(".content-cell:not(.empty)")]
+            .some(cell => cell.style.display !== "none");
+
+          const isCurrent = section.classList.contains("active");
+          row.style.display = isCurrent && (term ? nonEmptyCellVisible : "") ? "" : (isCurrent ? "" : "");
+        });
+      });
+    }
+
+    searchInput.addEventListener("input", filterContent);
+
+    document.querySelectorAll(".video-btn").forEach(button => {
+      button.addEventListener("click", () => {
+        const url = button.dataset.video;
+        modalTitle.textContent = button.dataset.title || "Aula";
+        videoFrame.src = url.includes("?") ? `${url}&autoplay=1` : `${url}?autoplay=1`;
+        videoModal.classList.add("open");
+        videoModal.setAttribute("aria-hidden", "false");
+        body.style.overflow = "hidden";
+      });
+    });
+
+    document.querySelectorAll(".video-trigger").forEach(link => {
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+        const url = link.dataset.video;
+        modalTitle.textContent = link.dataset.subject || "Aula";
+        videoFrame.src = url.includes("?") ? `${url}&autoplay=1` : `${url}?autoplay=1`;
+        videoModal.classList.add("open");
+        videoModal.setAttribute("aria-hidden", "false");
+        body.style.overflow = "hidden";
+      });
+    });
+
+    function closeVideoModal() {
+      videoModal.classList.remove("open");
+      videoModal.setAttribute("aria-hidden", "true");
+      videoFrame.src = "";
+      body.style.overflow = "";
+    }
+
+    closeModal.addEventListener("click", closeVideoModal);
+
+    videoModal.addEventListener("click", event => {
+      if (event.target === videoModal) closeVideoModal();
+    });
+
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape" && videoModal.classList.contains("open")) {
+        closeVideoModal();
+      }
+    });
+
+    printBtn.addEventListener("click", () => window.print());
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("show");
+      window.clearTimeout(showToast.timer);
+      showToast.timer = window.setTimeout(() => toast.classList.remove("show"), 1800);
+    }
+
+    resetBtn.addEventListener("click", () => {
+      const confirmed = window.confirm("Deseja zerar todo o progresso?");
+      if (!confirmed) return;
+
+      storedProgress = {};
+      saveProgress();
+      checks.forEach(check => check.checked = false);
+      updateProgress();
+      showToast("Progresso zerado.");
+    });
+
+    loadProgress();
+    filterContent();
+  </script>
+</body>
+</html>
