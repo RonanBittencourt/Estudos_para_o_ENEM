@@ -687,6 +687,69 @@
         box-shadow: none;
       }
     }
+
+/* ===== UPGRADE 2026 — UX / Gamificação / Aprendizagem ===== */
+:root{
+  --accent:#18a1ff;
+  --accent-2:#7b61ff;
+  --success:#25c26e;
+  --warning:#ffb11b;
+  --danger:#ff5c67;
+  --ink:#0f1c24;
+  --glass:rgba(255,255,255,.72);
+  --glass-border:rgba(255,255,255,.62);
+}
+body{
+  background:
+    radial-gradient(circle at 15% 5%, rgba(24,161,255,.12), transparent 25%),
+    radial-gradient(circle at 90% 10%, rgba(123,97,255,.10), transparent 25%),
+    linear-gradient(180deg,#f7fbfe 0%,#eaf2f7 100%);
+}
+.site-header{box-shadow:0 6px 28px rgba(8,60,86,.06)}
+.header-actions .small-btn{transition:transform .2s ease,box-shadow .2s ease,background .2s ease}
+.header-actions .small-btn:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(8,60,86,.09)}
+.hero{animation:heroIn .65s cubic-bezier(.2,.8,.2,1);isolation:isolate}
+.hero::before{content:"";position:absolute;inset:-80px auto auto -80px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.17),transparent 68%);animation:floatOrb 8s ease-in-out infinite}
+@keyframes heroIn{from{opacity:0;transform:translateY(-10px) scale(.985)}to{opacity:1;transform:none}}
+@keyframes floatOrb{50%{transform:translate(40px,20px)}}
+.progress-area{position:relative;overflow:hidden}
+.progress-area::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 25%,rgba(255,255,255,.32) 50%,transparent 75%);transform:translateX(-100%);animation:shine 4.5s linear infinite;pointer-events:none}
+@keyframes shine{to{transform:translateX(100%)}}
+.week-tab,.small-btn,.video-btn,.module-btn,.quiz-option,.tool-card,.flash-card,.answer-btn,.focus-btn{transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease,background .2s ease}
+.week-tab:hover,.module-btn:hover,.tool-card:hover,.flash-card:hover,.focus-btn:hover{transform:translateY(-3px)}
+.table tbody tr{transition:transform .2s ease,box-shadow .2s ease}
+.table tbody tr:hover{transform:translateY(-1px);box-shadow:inset 4px 0 0 var(--accent)}
+.content-item{transition:opacity .2s ease,transform .2s ease}
+.content-item:has(.study-check:checked){opacity:.66}
+.study-check{accent-color:var(--success);transform:scale(1.05)}
+.streak-pill{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);padding:7px 10px;border-radius:999px;font-size:.77rem;font-weight:800;margin-top:10px}
+.quick-grid{width:min(1400px,94%);margin:0 auto 18px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.tool-card{background:var(--glass);backdrop-filter:blur(12px);border:1px solid var(--glass-border);border-radius:16px;padding:16px;box-shadow:0 12px 30px rgba(8,60,86,.07);cursor:pointer}
+.tool-card .icon{font-size:1.35rem}.tool-card strong{display:block;margin:7px 0 2px;color:var(--navy-dark)}.tool-card span{font-size:.75rem;color:var(--muted)}
+.dashboard{width:min(1400px,94%);margin:0 auto 18px;display:grid;grid-template-columns:1.25fr .75fr;gap:12px}
+.dashboard-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:16px;box-shadow:var(--shadow)}
+.dashboard-title{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}.dashboard-title h3{margin:0;font-size:.95rem;color:var(--navy-dark)}.dashboard-title span{font-size:.72rem;color:var(--muted)}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.stat{padding:12px;border-radius:12px;background:#f6fafc}.stat b{display:block;font-size:1.2rem;color:var(--navy)}.stat small{color:var(--muted);font-size:.68rem}
+.level-bar{height:9px;background:#e9eff3;border-radius:99px;overflow:hidden}.level-fill{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent-2));border-radius:inherit;transition:width .45s ease}
+.next-box{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:center}.avatar{width:52px;height:52px;border-radius:15px;display:grid;place-items:center;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;font-weight:900;font-size:1.05rem;box-shadow:0 10px 25px rgba(24,161,255,.22)}
+.challenge-bar{width:min(1400px,94%);margin:0 auto 18px;border:1px solid #d9e5ec;border-radius:15px;padding:14px 16px;background:linear-gradient(135deg,#ffffff,#f7fbfe);display:flex;align-items:center;justify-content:space-between;gap:12px;box-shadow:var(--shadow)}
+.challenge-bar strong{color:var(--navy-dark)}.challenge-bar small{display:block;color:var(--muted);margin-top:2px}.module-btn{border:0;border-radius:10px;padding:10px 13px;color:#fff;background:linear-gradient(135deg,var(--accent),#1780c8);font-weight:900}
+.modal-backdrop.quiz-bg,.modal-backdrop.tool-bg{background:rgba(2,18,28,.78);backdrop-filter:blur(8px)}
+.modal.quiz-modal,.modal.tool-modal{max-width:960px;background:#f7fafc;color:var(--text);overflow:hidden}
+.quiz-head{padding:18px 20px;background:linear-gradient(135deg,var(--navy),#0d688e);color:#fff;display:flex;justify-content:space-between;gap:12px;align-items:center}.quiz-head h3{margin:0;font-size:1rem}.quiz-meta{font-size:.72rem;opacity:.86}
+.quiz-body{padding:20px}.quiz-question{font-size:1.12rem;font-weight:900;color:var(--ink);line-height:1.4;margin-bottom:15px}.quiz-context{font-size:.8rem;color:var(--muted);margin-bottom:15px}.quiz-options{display:grid;gap:10px}.quiz-option{border:1px solid #dbe5eb;background:#fff;text-align:left;padding:13px 14px;border-radius:12px;font-size:.83rem;font-weight:700;box-shadow:0 4px 12px rgba(0,0,0,.03)}.quiz-option:hover{border-color:var(--accent);box-shadow:0 8px 18px rgba(24,161,255,.08)}.quiz-option.correct{border-color:var(--success);background:#edfdf4;color:#087744}.quiz-option.wrong{border-color:var(--danger);background:#fff0f2;color:#b72832}.quiz-option:disabled{cursor:default;transform:none}
+.quiz-feedback{min-height:32px;margin-top:12px;border-radius:10px;padding:10px 12px;font-size:.78rem;font-weight:800;display:none}.quiz-feedback.show{display:block}.quiz-feedback.ok{background:#edfdf4;color:#087744}.quiz-feedback.bad{background:#fff0f2;color:#b72832}
+.quiz-footer{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:16px}.answer-btn{border:0;border-radius:10px;padding:10px 14px;background:var(--navy);color:#fff;font-weight:900}.answer-btn:disabled{opacity:.45;cursor:not-allowed}.quiz-dots{display:flex;gap:5px;flex-wrap:wrap}.quiz-dot{width:8px;height:8px;border-radius:50%;background:#d8e1e7}.quiz-dot.active{background:var(--accent)}.quiz-dot.done{background:var(--success)}
+.result-wrap{text-align:center;padding:24px}.score-ring{width:120px;height:120px;border-radius:50%;margin:0 auto 15px;display:grid;place-items:center;background:conic-gradient(var(--success) var(--score,0%),#e8eef2 0);position:relative}.score-ring::after{content:"";position:absolute;inset:10px;background:#f7fafc;border-radius:50%}.score-ring strong{position:relative;z-index:1;font-size:1.25rem;color:var(--navy)}
+.flash-wrap{padding:20px}.flash-card{perspective:1200px;cursor:pointer}.flash-inner{position:relative;min-height:250px;transform-style:preserve-3d;transition:transform .55s cubic-bezier(.2,.8,.2,1)}.flash-card.flipped .flash-inner{transform:rotateY(180deg)}.flash-face{position:absolute;inset:0;backface-visibility:hidden;background:#fff;border:1px solid var(--border);border-radius:18px;padding:24px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;box-shadow:var(--shadow)}.flash-face.back{transform:rotateY(180deg);background:#f0f8fc}.flash-face small{color:var(--muted);font-size:.7rem;margin-bottom:9px}.flash-face strong{font-size:1.1rem;color:var(--navy-dark)}
+.timer{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center}.timer-time{font-size:3.1rem;font-weight:900;letter-spacing:1px;color:var(--navy)}.timer-ring{width:120px;height:120px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--accent) var(--timer,100%),#e6eef3 0)}.timer-ring::before{content:"";position:absolute}.timer-ring span{width:92px;height:92px;border-radius:50%;background:#fff;display:grid;place-items:center;font-weight:900;color:var(--navy)}.timer-actions{display:flex;gap:8px;flex-wrap:wrap}.timer-actions button{border:0;border-radius:10px;padding:10px 12px;font-weight:900}.timer-actions .start{background:var(--success);color:#fff}.timer-actions .pause{background:var(--warning);color:#3a2a00}.timer-actions .reset{background:#e9eff3;color:var(--navy-dark)}
+.focus-mode{position:fixed;inset:0;background:linear-gradient(135deg,#071923,#0d3448);z-index:500;display:none;color:#fff;place-items:center;padding:20px}.focus-mode.open{display:grid}.focus-inner{width:min(760px,95%);text-align:center}.focus-inner h2{font-size:clamp(2rem,5vw,3.8rem);margin:0 0 10px}.focus-inner p{opacity:.75}.focus-clock{font-size:clamp(4rem,16vw,10rem);font-weight:900;letter-spacing:3px;margin:25px 0}.focus-close{position:fixed;top:18px;right:18px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff;border-radius:10px;padding:9px 11px}
+.achievement-list{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.achievement{padding:12px;border:1px solid var(--border);border-radius:12px;background:#fbfdfe}.achievement.unlocked{border-color:#b9e8cb;background:#effcf4}.achievement .badge{font-size:1.5rem}.achievement strong{display:block;font-size:.76rem;margin:5px 0 2px}.achievement small{color:var(--muted);font-size:.67rem}
+.toast.challenge{background:#0d2b3a;box-shadow:0 14px 34px rgba(13,43,58,.28)}
+@media(max-width:1050px){.quick-grid{grid-template-columns:repeat(2,1fr)}.dashboard{grid-template-columns:1fr}.achievement-list{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:720px){.quick-grid{grid-template-columns:1fr}.stat-grid{grid-template-columns:repeat(2,1fr)}.challenge-bar{align-items:flex-start;flex-direction:column}.module-btn{width:100%}.quiz-body{padding:15px}.timer{grid-template-columns:1fr}.timer-ring{margin:0 auto}.achievement-list{grid-template-columns:1fr 1fr}.focus-clock{margin:15px 0}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
   </style>
 </head>
 <body>
@@ -707,6 +770,41 @@
   <section class="hero" aria-label="Introdução">
     <h2>Plano de Estudos — Ciclo de 3 Semanas</h2>
     <p>Use os botões “Vídeo” para abrir a aula do YouTube dentro do próprio site.</p>
+    <div class="streak-pill">🔥 Sequência de estudo: <span id="streakValue">0</span> dias</div>
+  </section>
+
+  <section class="dashboard" aria-label="Painel de desempenho">
+    <div class="dashboard-card">
+      <div class="dashboard-title">
+        <h3>Seu desempenho</h3><span id="levelLabel">Nível 1 • Iniciante</span>
+      </div>
+      <div class="stat-grid">
+        <div class="stat"><b id="xpValue">0</b><small>XP acumulado</small></div>
+        <div class="stat"><b id="quizValue">0%</b><small>Taxa de acerto</small></div>
+        <div class="stat"><b id="completedValue">0</b><small>Conteúdos concluídos</small></div>
+        <div class="stat"><b id="bestStreak">0</b><small>Melhor sequência</small></div>
+      </div>
+      <div style="margin-top:13px;display:flex;justify-content:space-between;gap:10px;font-size:.72rem;color:var(--muted)">
+        <span>Próximo nível</span><strong id="xpNext">100 XP</strong>
+      </div>
+      <div class="level-bar"><div class="level-fill" id="levelFill"></div></div>
+    </div>
+    <div class="dashboard-card next-box">
+      <div class="avatar" id="levelAvatar">1</div>
+      <div><div style="font-weight:900;color:var(--navy-dark)" id="nextActionTitle">Comece pela primeira sessão</div><div style="font-size:.74rem;color:var(--muted);margin-top:4px" id="nextActionText">Marque um conteúdo como estudado ou faça um desafio.</div></div>
+    </div>
+  </section>
+
+  <section class="quick-grid" aria-label="Ferramentas de aprendizagem">
+    <button class="tool-card" type="button" id="openChallenge"><div class="icon">⚡</div><strong>Desafio rápido</strong><span>5 questões aleatórias • XP extra</span></button>
+    <button class="tool-card" type="button" id="openFlashcards"><div class="icon">🧠</div><strong>Flashcards</strong><span>Recuperação ativa em ciclos curtos</span></button>
+    <button class="tool-card" type="button" id="openPomodoro"><div class="icon">⏱️</div><strong>Foco 25 min</strong><span>Pomodoro integrado ao estudo</span></button>
+    <button class="tool-card" type="button" id="openAchievements"><div class="icon">🏆</div><strong>Conquistas</strong><span>Desbloqueie marcos de estudo</span></button>
+  </section>
+
+  <section class="challenge-bar">
+    <div><strong>🎯 Desafio diário</strong><small id="dailyChallengeText">Complete 1 desafio para ganhar XP bônus hoje.</small></div>
+    <button class="module-btn" type="button" id="dailyChallengeBtn">Fazer desafio</button>
   </section>
 
   <section class="progress-area" aria-label="Progresso">
@@ -1243,11 +1341,50 @@
     </div>
   </div>
 
+
+  <div class="modal-backdrop quiz-bg" id="quizModal" aria-hidden="true">
+    <div class="modal quiz-modal" role="dialog" aria-modal="true" aria-labelledby="quizTitle">
+      <div class="quiz-head">
+        <div><h3 id="quizTitle">Desafio</h3><div class="quiz-meta" id="quizMeta">Questão 1</div></div>
+        <button class="modal-close" id="closeQuiz" type="button" aria-label="Fechar desafio">×</button>
+      </div>
+      <div class="quiz-body" id="quizBody"></div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop tool-bg" id="flashModal" aria-hidden="true">
+    <div class="modal tool-modal" role="dialog" aria-modal="true" aria-labelledby="flashTitle">
+      <div class="quiz-head"><div><h3 id="flashTitle">Flashcards</h3><div class="quiz-meta" id="flashMeta">Clique no cartão para revelar</div></div><button class="modal-close" id="closeFlash" type="button" aria-label="Fechar flashcards">×</button></div>
+      <div class="flash-wrap" id="flashBody"></div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop tool-bg" id="pomodoroModal" aria-hidden="true">
+    <div class="modal tool-modal" role="dialog" aria-modal="true" aria-labelledby="pomodoroTitle">
+      <div class="quiz-head"><div><h3 id="pomodoroTitle">Pomodoro de foco</h3><div class="quiz-meta">25 min de foco • 5 min de pausa</div></div><button class="modal-close" id="closePomodoro" type="button" aria-label="Fechar pomodoro">×</button></div>
+      <div class="quiz-body">
+        <div class="timer"><div><div class="timer-time" id="timerTime">25:00</div><div style="color:var(--muted);font-size:.78rem;margin:4px 0 12px" id="timerStatus">Pronto para focar.</div><div class="timer-actions"><button class="start" id="timerStart">Iniciar</button><button class="pause" id="timerPause">Pausar</button><button class="reset" id="timerReset">Reiniciar</button></div></div><div class="timer-ring" id="timerRing"><span id="timerRingText">100%</span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop tool-bg" id="achievementsModal" aria-hidden="true">
+    <div class="modal tool-modal" role="dialog" aria-modal="true" aria-labelledby="achievementsTitle">
+      <div class="quiz-head"><div><h3 id="achievementsTitle">Conquistas</h3><div class="quiz-meta">Marcos que reforçam consistência</div></div><button class="modal-close" id="closeAchievements" type="button" aria-label="Fechar conquistas">×</button></div>
+      <div class="quiz-body"><div class="achievement-list" id="achievementList"></div></div>
+    </div>
+  </div>
+
+  <div class="focus-mode" id="focusMode" aria-hidden="true">
+    <button class="focus-close" id="closeFocus" type="button">Sair do modo foco</button>
+    <div class="focus-inner"><div style="opacity:.65;font-size:.8rem;letter-spacing:1px">MODO FOCO</div><h2 id="focusTitle">Sessão de estudo</h2><p>Elimine distrações. Respire. Estude um bloco por vez.</p><div class="focus-clock" id="focusClock">25:00</div><button class="module-btn" id="focusAction" type="button">Iniciar</button></div>
+  </div>
+
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script>
-    const STORAGE_KEY = "plano-estudos-enem-progresso-v1";
-
+    const STORAGE_KEY = "plano-estudos-enem-progress-v3";
+    const APP_KEY = "plano-estudos-enem-app-v3";
     const body = document.body;
     const weekTabs = [...document.querySelectorAll(".week-tab")];
     const weekSections = [...document.querySelectorAll(".week-section")];
@@ -1262,101 +1399,82 @@
     const printBtn = document.getElementById("printBtn");
     const resetBtn = document.getElementById("resetBtn");
     const toast = document.getElementById("toast");
+    const xpValue = document.getElementById("xpValue");
+    const quizValue = document.getElementById("quizValue");
+    const completedValue = document.getElementById("completedValue");
+    const bestStreak = document.getElementById("bestStreak");
+    const streakValue = document.getElementById("streakValue");
+    const levelLabel = document.getElementById("levelLabel");
+    const levelAvatar = document.getElementById("levelAvatar");
+    const levelFill = document.getElementById("levelFill");
+    const xpNext = document.getElementById("xpNext");
+    const nextActionTitle = document.getElementById("nextActionTitle");
+    const nextActionText = document.getElementById("nextActionText");
+    const quizModal = document.getElementById("quizModal");
+    const quizBody = document.getElementById("quizBody");
+    const quizTitle = document.getElementById("quizTitle");
+    const quizMeta = document.getElementById("quizMeta");
+    const flashModal = document.getElementById("flashModal");
+    const flashBody = document.getElementById("flashBody");
+    const flashMeta = document.getElementById("flashMeta");
+    const pomodoroModal = document.getElementById("pomodoroModal");
+    const achievementsModal = document.getElementById("achievementsModal");
+    const achievementList = document.getElementById("achievementList");
+    const focusMode = document.getElementById("focusMode");
+    const focusClock = document.getElementById("focusClock");
+    const focusTitle = document.getElementById("focusTitle");
+    const focusAction = document.getElementById("focusAction");
+    const dailyChallengeText = document.getElementById("dailyChallengeText");
 
     let storedProgress = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+    let appState = JSON.parse(localStorage.getItem(APP_KEY) || "{}" );
+    appState = Object.assign({xp:0, quizAttempts:0, quizCorrect:0, streak:0, bestStreak:0, lastStudyDate:null, dailyDone:null, unlocked:{}}, appState);
+    let quizSession = null;
+    let flashIndex = 0;
+    let timer = {seconds:1500, running:false, interval:null, total:1500};
 
-    function normalize(text) {
-      return text
-        .toLowerCase()
-        .normalize("NFD")
-        .replace(/[\\u0300-\\u036f]/g, "");
+    function normalize(text){return text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");}
+    function saveApp(){localStorage.setItem(APP_KEY,JSON.stringify(appState));}
+    function getCheckId(check){const item=check.closest(".content-item");const section=check.closest(".week-section");const day=check.closest("tr")?.querySelector(".day-cell")?.textContent.trim()||"";const session=check.closest(".content-cell")?.dataset.session||"";return `${section?.id||""}|${day}|${session}|${item?.dataset.search||""}`;}
+    function saveProgress(){localStorage.setItem(STORAGE_KEY,JSON.stringify(storedProgress));}
+    function addXP(amount, reason="") { appState.xp += amount; saveApp(); updateDashboard(); if(reason) showToast(`+${amount} XP • ${reason}`, true); }
+    function updateStreak(){
+      const today = new Date().toISOString().slice(0,10);
+      if(appState.lastStudyDate===today) return;
+      const yesterday = new Date(Date.now()-86400000).toISOString().slice(0,10);
+      if(appState.lastStudyDate===yesterday){ appState.streak += 1; } else { appState.streak = 1; }
+      appState.bestStreak = Math.max(appState.bestStreak, appState.streak);
+      appState.lastStudyDate=today; saveApp();
     }
-
-    function getCheckId(check) {
-      const item = check.closest(".content-item");
-      const section = check.closest(".week-section");
-      const day = check.closest("tr")?.querySelector(".day-cell")?.textContent.trim() || "";
-      const session = check.closest(".content-cell")?.dataset.session || "";
-      return `${section?.id || ""}|${day}|${session}|${item?.dataset.search || ""}`;
+    function updateProgress(){
+      const total=checks.length, done=checks.filter(c=>c.checked).length, percent=total?Math.round(done/total*100):0;
+      progressBar.style.width=`${percent}%`;progressValue.textContent=`${percent}%`;
+      completedValue.textContent=done; streakValue.textContent=appState.streak; bestStreak.textContent=appState.bestStreak;
+      nextActionTitle.textContent=percent<30?"Construa a base primeiro":percent<70?"Você está embalando":"Hora de consolidar";
+      nextActionText.textContent=percent<30?"Assista, marque e faça um desafio curto.":percent<70?"Intercale questões e flashcards para fortalecer a memória.":"Priorize revisão espaçada e simulados.";
     }
-
-    function saveProgress() {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(storedProgress));
-    }
-
-    function updateProgress() {
-      const total = checks.length;
-      const done = checks.filter(check => check.checked).length;
-      const percent = total ? Math.round((done / total) * 100) : 0;
-      progressBar.style.width = `${percent}%`;
-      progressValue.textContent = `${percent}%`;
-    }
-
-    function loadProgress() {
-      checks.forEach(check => {
-        check.checked = Boolean(storedProgress[getCheckId(check)]);
-      });
+    function updateDashboard(){
+      const level=Math.floor(appState.xp/100)+1;
+      const into=appState.xp%100;
+      levelAvatar.textContent=level;
+      levelLabel.textContent=`Nível ${level} • ${level===1?"Iniciante":level<4?"Em evolução":level<7?"Constante":"Elite"}`;
+      xpValue.textContent=appState.xp;
+      quizValue.textContent=appState.quizAttempts?`${Math.round(appState.quizCorrect/appState.quizAttempts*100)}%`:"0%";
+      levelFill.style.width=`${into}%`;
+      xpNext.textContent=`${100-into||100} XP`;
       updateProgress();
     }
+    function loadProgress(){checks.forEach(c=>c.checked=Boolean(storedProgress[getCheckId(c)]));updateDashboard();}
+    checks.forEach(c=>c.addEventListener("change",()=>{storedProgress[getCheckId(c)]=c.checked;saveProgress();updateStreak();if(c.checked)addXP(5,"conteúdo concluído");updateDashboard();checkAchievements();}));
 
-    checks.forEach(check => {
-      check.addEventListener("change", () => {
-        storedProgress[getCheckId(check)] = check.checked;
-        saveProgress();
-        updateProgress();
-      });
-    });
+    weekTabs.forEach(tab=>tab.addEventListener("click",()=>{
+      const target=tab.dataset.week;
+      weekTabs.forEach(item=>{const active=item===tab;item.classList.toggle("active",active);item.setAttribute("aria-selected",active?"true":"false")});
+      weekSections.forEach(s=>s.classList.toggle("active",s.id===target)); filterContent();
+    }));
+    function filterContent(){const term=normalize(searchInput.value.trim());weekSections.forEach(section=>section.querySelectorAll("tbody tr").forEach(row=>{row.querySelectorAll(".content-item").forEach(item=>item.style.display=!term||normalize(item.dataset.search||"").includes(term)?"":"none");row.querySelectorAll(".content-cell:not(.empty)").forEach(cell=>{const items=[...cell.querySelectorAll(".content-item")];cell.style.display=!term||items.some(i=>i.style.display!=="none")?"":"none"});const visible=[...row.querySelectorAll(".content-cell:not(.empty)")].some(c=>c.style.display!=="none");row.style.display=section.classList.contains("active")&&(term?visible:true)?"":"none";}));}
+    searchInput.addEventListener("input",filterContent);
 
-    weekTabs.forEach(tab => {
-      tab.addEventListener("click", () => {
-        const target = tab.dataset.week;
-
-        weekTabs.forEach(item => {
-          const active = item === tab;
-          item.classList.toggle("active", active);
-          item.setAttribute("aria-selected", active ? "true" : "false");
-        });
-
-        weekSections.forEach(section => {
-          section.classList.toggle("active", section.id === target);
-        });
-
-        filterContent();
-      });
-    });
-
-    function filterContent() {
-      const term = normalize(searchInput.value.trim());
-
-      weekSections.forEach(section => {
-        section.querySelectorAll("tbody tr").forEach(row => {
-          let visibleCells = 0;
-
-          row.querySelectorAll(".content-item").forEach(item => {
-            const match = !term || normalize(item.dataset.search || "").includes(term);
-            item.style.display = match ? "" : "none";
-            if (match) visibleCells++;
-          });
-
-          row.querySelectorAll(".content-cell:not(.empty)").forEach(cell => {
-            const items = [...cell.querySelectorAll(".content-item")];
-            const hasVisibleItem = items.some(item => item.style.display !== "none");
-            cell.style.display = hasVisibleItem || !term ? "" : "none";
-          });
-
-          const nonEmptyCellVisible = [...row.querySelectorAll(".content-cell:not(.empty)")]
-            .some(cell => cell.style.display !== "none");
-
-          const isCurrent = section.classList.contains("active");
-          row.style.display = isCurrent && (term ? nonEmptyCellVisible : "") ? "" : (isCurrent ? "" : "");
-        });
-      });
-    }
-
-    searchInput.addEventListener("input", filterContent);
-
-    // Aulas reais encontradas no YouTube. Os vídeos são incorporados no player do próprio site.
-    // Alguns temas compartilham uma aula mais completa quando ela cobre o conteúdo do cronograma.
     const videoLibrary = {
       "matemática razão e proporção": { id: "mKm-asQ7iLs", title: "Matemática — Razão e Proporção" },
       "matemática regra de três": { id: "4yg8bhFMju0", title: "Matemática — Regra de três" },
@@ -1411,73 +1529,124 @@
       "linguagens escolas literárias vanguardas europeias": { id: "gvN4qysOkkk", title: "Linguagens — Revisão para o ENEM" }
     };
 
-    function openVideo(title, videoId) {
-      modalTitle.textContent = title;
-      videoFrame.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
-      videoModal.classList.add("open");
-      videoModal.setAttribute("aria-hidden", "false");
-      body.style.overflow = "hidden";
-    }
 
-    function buildVideoButtons() {
-      document.querySelectorAll(".content-item").forEach(item => {
-        item.querySelectorAll(".video-btn").forEach(button => button.remove());
-        const video = videoLibrary[item.dataset.search || ""];
-        if (!video) return;
-
-        const button = document.createElement("button");
-        button.type = "button";
-        button.className = "video-btn";
-        button.textContent = "▶ Aula";
-        button.setAttribute("aria-label", `Assistir aula: ${video.title}`);
-        button.addEventListener("click", () => openVideo(video.title, video.id));
-        item.appendChild(button);
-      });
-    }
-
+    function openVideo(title,videoId){modalTitle.textContent=title;videoFrame.src=`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;videoModal.classList.add("open");videoModal.setAttribute("aria-hidden","false");body.style.overflow="hidden";}
+    function buildVideoButtons(){document.querySelectorAll(".content-item").forEach(item=>{item.querySelectorAll(".video-btn").forEach(b=>b.remove());const video=videoLibrary[item.dataset.search||""];if(!video)return;const b=document.createElement("button");b.type="button";b.className="video-btn";b.textContent="▶ Aula";b.setAttribute("aria-label",`Assistir aula: ${video.title}`);b.addEventListener("click",()=>openVideo(video.title,video.id));item.appendChild(b)});}
     buildVideoButtons();
+    function closeVideoModal(){videoModal.classList.remove("open");videoModal.setAttribute("aria-hidden","true");videoFrame.src="";body.style.overflow="";}
+    closeModal.addEventListener("click",closeVideoModal);videoModal.addEventListener("click",e=>{if(e.target===videoModal)closeVideoModal()});
 
-    function closeVideoModal() {
-      videoModal.classList.remove("open");
-      videoModal.setAttribute("aria-hidden", "true");
-      videoFrame.src = "";
-      body.style.overflow = "";
+    const questionBank=[
+      {s:"Matemática",t:"Razão e proporção",q:"Uma receita usa 2 copos de água para 5 de farinha. Mantendo a proporção, quantos copos de água são necessários para 15 de farinha?",o:["4","5","6","7","8"],a:2,e:"A razão é 2/5. Para 15 de farinha: 15×2/5 = 6."},
+      {s:"Matemática",t:"Regra de três",q:"Se 4 cadernos custam R$ 28, quanto custam 7 cadernos no mesmo preço unitário?",o:["R$ 42","R$ 49","R$ 52","R$ 56","R$ 63"],a:1,e:"O preço unitário é 28/4 = 7; então 7×7 = R$ 49."},
+      {s:"Matemática",t:"Estatística",q:"As notas 6, 7, 7, 8 e 12 têm qual média aritmética?",o:["7,5","8","8,0","8,2","8,5"],a:2,e:"A soma é 40 e há 5 valores: 40/5 = 8."},
+      {s:"Matemática",t:"Probabilidade",q:"Ao lançar um dado honesto, qual é a probabilidade de sair um número par?",o:["1/6","1/3","1/2","2/3","5/6"],a:2,e:"Há 3 resultados pares em 6 possíveis: 3/6 = 1/2."},
+      {s:"Matemática",t:"Geometria espacial",q:"Um cubo tem aresta de 3 cm. Qual é seu volume?",o:["9 cm³","18 cm³","27 cm³","36 cm³","54 cm³"],a:2,e:"Volume do cubo = a³ = 3³ = 27 cm³."},
+      {s:"Química",t:"Orgânica",q:"Qual função orgânica apresenta o grupo hidroxila ligado a carbono saturado?",o:["Álcool","Aldeído","Cetona","Ácido carboxílico","Éster"],a:0,e:"Álcoois possuem grupo –OH ligado a carbono saturado."},
+      {s:"Química",t:"Forças intermoleculares",q:"Entre moléculas de água, a interação intermolecular predominante é:",o:["íon-dipolo","ligação de hidrogênio","força nuclear","ligação metálica","dipolo induzido"],a:1,e:"A água forma ligações de hidrogênio por causa de O–H e da alta eletronegatividade do oxigênio."},
+      {s:"Química",t:"Eletroquímica",q:"Em uma pilha, a oxidação ocorre no:",o:["cátodo","ânodo","eletrólito apenas","salina","ponte externa"],a:1,e:"Oxidação ocorre no ânodo; redução ocorre no cátodo."},
+      {s:"Química",t:"Cinética",q:"Aumentar a temperatura de uma reação geralmente aumenta sua velocidade porque:",o:["reduz colisões","aumenta a energia cinética média","diminui a concentração","remove reagente","torna a reação impossível"],a:1,e:"Maior temperatura aumenta a energia cinética média e a fração de colisões eficazes."},
+      {s:"Biologia",t:"Citologia",q:"Qual organela é diretamente associada à produção de ATP por respiração celular?",o:["Ribossomo","Lisossomo","Mitocôndria","Golgi","Centríolo"],a:2,e:"A mitocôndria é o principal local da respiração celular aeróbia em células eucarióticas."},
+      {s:"Biologia",t:"Genética",q:"Em um cruzamento Aa × Aa, considerando dominância completa, a chance de aa é:",o:["0%","25%","50%","75%","100%"],a:1,e:"Os genótipos são AA, Aa, Aa e aa; portanto, 1/4 = 25%."},
+      {s:"Biologia",t:"Ecologia",q:"Organismos que produzem matéria orgânica a partir de substâncias inorgânicas são chamados de:",o:["Consumidores","Decompositores","Produtores","Parasitas","Detritívoros"],a:2,e:"Produtores, como plantas e algas, realizam produção de matéria orgânica via foto/quimiossíntese."},
+      {s:"Biologia",t:"Evolução",q:"A seleção natural favorece, em determinado ambiente, indivíduos que:",o:["sempre são maiores","possuem características que aumentam seu sucesso reprodutivo","nunca sofrem mutações","são geneticamente idênticos","evitam toda competição"],a:1,e:"Seleção natural altera frequências de características associadas a maior sobrevivência e reprodução."},
+      {s:"Física",t:"Circuitos",q:"Em um circuito simples, mantendo a resistência constante, aumentar a tensão aplicada faz a corrente:",o:["diminuir","aumentar","zerar","não mudar nunca","inverter automaticamente"],a:1,e:"Pela lei de Ohm, I = V/R. Com R constante, I cresce com V."},
+      {s:"Física",t:"Cinemática",q:"Um móvel parte do repouso e acelera uniformemente a 2 m/s² durante 5 s. Qual a velocidade final?",o:["5 m/s","7 m/s","10 m/s","12 m/s","15 m/s"],a:2,e:"v = v0 + at = 0 + 2×5 = 10 m/s."},
+      {s:"Física",t:"Termologia",q:"Ao aquecer um corpo sem mudança de estado, o calor fornecido está associado principalmente à variação de:",o:["massa","temperatura","carga elétrica","densidade nuclear","quantidade de prótons"],a:1,e:"Sem mudança de estado, o calor sensível está ligado à variação de temperatura."},
+      {s:"História",t:"Brasil Colônia",q:"A economia açucareira colonial brasileira esteve fortemente baseada em:",o:["trabalho assalariado industrial","latifúndio, monocultura e escravidão","pequena propriedade familiar","mineração desde o início","cooperativas urbanas"],a:1,e:"A plantation açucareira combinava latifúndio, monocultura para exportação e trabalho escravizado."},
+      {s:"História",t:"Era Vargas",q:"O Estado Novo, iniciado em 1937, caracterizou-se por:",o:["ampla descentralização","autoritarismo e centralização política","fim do poder executivo","eleições presidenciais diretas contínuas","retorno imediato à monarquia"],a:1,e:"O Estado Novo foi uma ditadura de Vargas marcada pela centralização e restrição de direitos políticos."},
+      {s:"História",t:"Imperialismo",q:"No final do século XIX, o imperialismo europeu foi impulsionado, entre outros fatores, por:",o:["fim da industrialização","busca de mercados e matérias-primas","abandono do comércio internacional","descolonização imediata","isolamento econômico"],a:1,e:"Potências industriais buscavam mercados consumidores, matérias-primas e áreas de investimento."},
+      {s:"Geografia",t:"Urbanização",q:"A urbanização corresponde, de forma geral, ao processo de aumento:",o:["da população rural apenas","da população urbana em relação à rural","das áreas agrícolas somente","da população indígena somente","do desemprego exclusivamente"],a:1,e:"Urbanização é o crescimento relativo e absoluto da população urbana e das cidades."},
+      {s:"Geografia",t:"Climatologia",q:"O clima é definido por condições atmosféricas observadas ao longo de:",o:["horas","dias","períodos longos","uma única tempestade","um único verão"],a:2,e:"Clima descreve padrões atmosféricos observados em longos períodos; tempo é a condição momentânea."},
+      {s:"Geografia",t:"Hidrografia",q:"Bacias hidrográficas são melhor entendidas como áreas:",o:["sem rios","drenadas por um rio principal e seus afluentes","sempre desérticas","apenas costeiras","sem relevo"],a:1,e:"Bacia hidrográfica é a área drenada por um curso principal e seus afluentes."},
+      {s:"Filosofia",t:"Descartes",q:"O método cartesiano busca um conhecimento seguro a partir de:",o:["dúvida metódica e análise racional","tradição sem questionamento","mitos exclusivamente","autoridade política","opinião da maioria"],a:0,e:"Descartes utiliza a dúvida metódica para buscar fundamentos indubitáveis do conhecimento."},
+      {s:"Filosofia",t:"Iluminismo",q:"Uma característica central do Iluminismo foi a valorização de:",o:["razão e crítica às estruturas tradicionais","censura absoluta","feudalismo","hereditariedade do conhecimento","rejeição da ciência"],a:0,e:"O Iluminismo valorizou a razão, a ciência e a crítica de autoridades e tradições."},
+      {s:"Linguagens",t:"Variações linguísticas",q:"A variação linguística demonstra que uma língua:",o:["é totalmente imóvel","apresenta usos diferentes conforme contexto e comunidade","tem apenas uma forma correta em toda situação","não muda com o tempo","não possui diferenças regionais"],a:1,e:"Línguas variam segundo fatores regionais, sociais, históricos e situacionais."},
+      {s:"Linguagens",t:"Funções da linguagem",q:"Quando uma mensagem enfatiza o próprio código linguístico, predomina a função:",o:["referencial","emotiva","metalinguística","fática","conativa"],a:2,e:"A função metalinguística ocorre quando a linguagem fala sobre a própria linguagem."},
+      {s:"Linguagens",t:"Gêneros textuais",q:"Uma notícia jornalística pertence a um gênero cuja finalidade principal costuma ser:",o:["informar sobre fatos","ensinar uma receita","narrar uma fantasia épica","prescrever exercícios físicos","formular uma equação"],a:0,e:"A notícia é um gênero informativo, embora possa conter outras funções discursivas conforme o contexto."}
+    ];
+    const flashcards=[
+      ["Razão e proporção","Razão compara duas grandezas por uma relação quociente; proporção estabelece igualdade entre duas razões."],
+      ["Lei de Ohm","I = V/R. Corrente aumenta com a tensão e diminui com a resistência, mantendo as demais condições."],
+      ["Mitocôndria","Organela associada à respiração celular e à produção de ATP em células eucarióticas."],
+      ["Seleção natural","Variações herdáveis que aumentam o sucesso reprodutivo tendem a se tornar mais frequentes em uma população."],
+      ["Urbanização","Processo de crescimento da população urbana e expansão das cidades em relação ao espaço rural."],
+      ["Função metalinguística","Função que coloca o código em foco, como quando um dicionário explica o significado de uma palavra."],
+      ["Dúvida metódica","Estratégia cartesiana de questionar crenças para encontrar uma base segura para o conhecimento."]
+    ];
+
+    function shuffle(arr){return [...arr].sort(()=>Math.random()-.5)}
+    function startQuiz({count=5, title="Desafio rápido", daily=false, subject=null}={}){
+      let pool=subject?questionBank.filter(q=>normalize(q.s)===normalize(subject)):questionBank;
+      pool=shuffle(pool).slice(0,Math.min(count,pool.length));
+      quizSession={items:pool,index:0,score:0,answered:false,daily,title};
+      quizTitle.textContent=title; quizModal.classList.add("open"); quizModal.setAttribute("aria-hidden","false"); body.style.overflow="hidden"; renderQuizQuestion();
     }
-
-    closeModal.addEventListener("click", closeVideoModal);
-
-    videoModal.addEventListener("click", event => {
-      if (event.target === videoModal) closeVideoModal();
-    });
-
-    document.addEventListener("keydown", event => {
-      if (event.key === "Escape" && videoModal.classList.contains("open")) {
-        closeVideoModal();
-      }
-    });
-
-    printBtn.addEventListener("click", () => window.print());
-
-    function showToast(message) {
-      toast.textContent = message;
-      toast.classList.add("show");
-      window.clearTimeout(showToast.timer);
-      showToast.timer = window.setTimeout(() => toast.classList.remove("show"), 1800);
+    function renderQuizQuestion(){
+      const q=quizSession.items[quizSession.index];
+      quizSession.answered=false;
+      quizMeta.textContent=`Questão ${quizSession.index+1} de ${quizSession.items.length} • ${q.s} — ${q.t}`;
+      const options=q.o.map((opt,i)=>`<button class="quiz-option" data-index="${i}" type="button">${String.fromCharCode(65+i)}) ${opt}</button>`).join("");
+      const dots=q=>quizSession.items.map((_,i)=>`<span class="quiz-dot ${i===quizSession.index?'active':''} ${i<quizSession.index?'done':''}"></span>`).join("");
+      quizBody.innerHTML=`<div class="quiz-question">${q.q}</div><div class="quiz-context">Tema: <strong>${q.s}</strong> • ${q.t}</div><div class="quiz-options">${options}</div><div class="quiz-feedback" id="quizFeedback"></div><div class="quiz-footer"><div class="quiz-dots">${dots()}</div><button class="answer-btn" id="nextQuestion" type="button" disabled>${quizSession.index===quizSession.items.length-1?'Ver resultado':'Próxima'}</button></div>`;
+      quizBody.querySelectorAll(".quiz-option").forEach(btn=>btn.addEventListener("click",()=>answerQuestion(Number(btn.dataset.index))));
     }
+    function answerQuestion(index){
+      if(quizSession.answered)return;
+      quizSession.answered=true; const q=quizSession.items[quizSession.index]; const correct=index===q.a;
+      appState.quizAttempts++; if(correct){appState.quizCorrect++;quizSession.score++;addXP(12,"resposta certa")} else {addXP(3,"tentativa")}; saveApp();
+      const buttons=[...quizBody.querySelectorAll(".quiz-option")]; buttons.forEach((b,i)=>{b.disabled=true;if(i===q.a)b.classList.add("correct");if(i===index&&!correct)b.classList.add("wrong")});
+      const f=document.getElementById("quizFeedback"); f.className=`quiz-feedback show ${correct?'ok':'bad'}`; f.textContent=`${correct?'✅ Correto! ':'❌ Ainda não. '}${q.e}`;
+      document.getElementById("nextQuestion").disabled=false; updateDashboard(); checkAchievements();
+    }
+    quizBody.addEventListener("click",e=>{if(e.target.id==="nextQuestion"){if(!quizSession.answered)return;if(quizSession.index===quizSession.items.length-1){finishQuiz()}else{quizSession.index++;renderQuizQuestion()}}});
+    function finishQuiz(){
+      const pct=Math.round(quizSession.score/quizSession.items.length*100);if(quizSession.daily){appState.dailyDone=new Date().toISOString().slice(0,10);addXP(25,"bônus do desafio diário");saveApp();updateDaily();}
+      const level=Math.floor(appState.xp/100)+1; quizBody.innerHTML=`<div class="result-wrap"><div class="score-ring" style="--score:${pct}%"><strong>${pct}%</strong></div><h3 style="margin:0;color:var(--navy-dark)">Desafio concluído!</h3><p style="color:var(--muted);font-size:.8rem">Você acertou ${quizSession.score} de ${quizSession.items.length}. ${pct>=80?'Excelente recuperação ativa.':'Revise os erros e tente novamente para consolidar.'}</p><div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:15px"><button class="answer-btn" id="retryQuiz">Tentar novamente</button><button class="small-btn" id="closeResult">Fechar</button></div><div style="margin-top:16px;color:var(--muted);font-size:.72rem">Nível ${level} • ${appState.xp} XP</div></div>`;
+      document.getElementById("retryQuiz").onclick=()=>startQuiz({count:quizSession.items.length,title:quizSession.title,daily:false});document.getElementById("closeResult").onclick=closeQuiz;
+    }
+    function closeQuiz(){quizModal.classList.remove("open");quizModal.setAttribute("aria-hidden","true");body.style.overflow="";}
+    document.getElementById("closeQuiz").onclick=closeQuiz;quizModal.addEventListener("click",e=>{if(e.target===quizModal)closeQuiz()});
 
-    resetBtn.addEventListener("click", () => {
-      const confirmed = window.confirm("Deseja zerar todo o progresso?");
-      if (!confirmed) return;
+    function openFlashcards(){flashIndex=0;flashModal.classList.add("open");flashModal.setAttribute("aria-hidden","false");body.style.overflow="hidden";renderFlashcard();}
+    function renderFlashcard(){const [front,back]=flashcards[flashIndex];flashBody.innerHTML=`<div class="flash-card" id="flashCard"><div class="flash-inner"><div class="flash-face"><small>CONCEITO • clique para virar</small><strong>${front}</strong></div><div class="flash-face back"><small>RESPOSTA</small><strong>${back}</strong></div></div></div><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:12px"><span style="font-size:.72rem;color:var(--muted)">${flashIndex+1} / ${flashcards.length}</span><button class="answer-btn" id="nextFlash">Próximo</button></div>`;document.getElementById("flashCard").onclick=()=>document.getElementById("flashCard").classList.toggle("flipped");document.getElementById("nextFlash").onclick=()=>{flashIndex=(flashIndex+1)%flashcards.length;renderFlashcard()};}
+    function closeFlash(){flashModal.classList.remove("open");flashModal.setAttribute("aria-hidden","true");body.style.overflow="";} document.getElementById("closeFlash").onclick=closeFlash;flashModal.addEventListener("click",e=>{if(e.target===flashModal)closeFlash()});
 
-      storedProgress = {};
-      saveProgress();
-      checks.forEach(check => check.checked = false);
-      updateProgress();
-      showToast("Progresso zerado.");
-    });
+    function formatTime(s){const m=Math.floor(s/60).toString().padStart(2,"0"),sec=(s%60).toString().padStart(2,"0");return `${m}:${sec}`;}
+    function renderTimer(){document.getElementById("timerTime").textContent=formatTime(timer.seconds);const pct=Math.round(timer.seconds/timer.total*100);document.getElementById("timerRing").style.setProperty("--timer",`${pct}%`);document.getElementById("timerRingText").textContent=`${pct}%`;focusClock.textContent=formatTime(timer.seconds);}
+    function runTimer(){if(timer.running)return;timer.running=true;document.getElementById("timerStatus").textContent="Foco em andamento — mantenha o celular longe.";timer.interval=setInterval(()=>{if(timer.seconds>0){timer.seconds--;renderTimer()}else{pauseTimer();addXP(20,"Pomodoro concluído");showToast("🎉 Pomodoro concluído! +20 XP",true)}},1000);}
+    function pauseTimer(){timer.running=false;clearInterval(timer.interval);document.getElementById("timerStatus").textContent="Pausado.";}
+    function resetTimer(){pauseTimer();timer.seconds=1500;timer.total=1500;document.getElementById("timerStatus").textContent="Pronto para focar.";renderTimer();}
+    document.getElementById("timerStart").onclick=runTimer;document.getElementById("timerPause").onclick=pauseTimer;document.getElementById("timerReset").onclick=resetTimer;
+    document.getElementById("openPomodoro").onclick=()=>{pomodoroModal.classList.add("open");pomodoroModal.setAttribute("aria-hidden","false");body.style.overflow="hidden";renderTimer()};
+    function closePomodoro(){pauseTimer();pomodoroModal.classList.remove("open");pomodoroModal.setAttribute("aria-hidden","true");body.style.overflow="";}document.getElementById("closePomodoro").onclick=closePomodoro;pomodoroModal.addEventListener("click",e=>{if(e.target===pomodoroModal)closePomodoro()});
 
-    loadProgress();
-    filterContent();
+    document.getElementById("openChallenge").onclick=()=>startQuiz({count:5,title:"Desafio rápido"});
+    document.getElementById("dailyChallengeBtn").onclick=()=>startQuiz({count:6,title:"Desafio diário",daily:true});
+    document.getElementById("openFlashcards").onclick=openFlashcards;
+    function updateDaily(){const today=new Date().toISOString().slice(0,10);const done=appState.dailyDone===today;dailyChallengeText.textContent=done?"✅ Desafio de hoje concluído. Volte amanhã para outro bônus.":"Complete 6 questões para ganhar XP bônus hoje.";document.getElementById("dailyChallengeBtn").textContent=done?"Concluído":"Fazer desafio";document.getElementById("dailyChallengeBtn").disabled=done;document.getElementById("dailyChallengeBtn").style.opacity=done?.6:1;}
+
+    const achievementDefs=[
+      ["🔥","Primeiro passo","Conclua 1 conteúdo",()=>checks.some(c=>c.checked)],
+      ["⚡","Quase automático","Conclua 10 conteúdos",()=>checks.filter(c=>c.checked).length>=10],
+      ["🧠","Mente ativa","Acerte 5 questões",()=>appState.quizCorrect>=5],
+      ["🎯","Precisão","Atinja 80% de acerto em 10+ questões",()=>appState.quizAttempts>=10&&appState.quizCorrect/appState.quizAttempts>=.8],
+      ["🔥","Sequência","Estude por 3 dias seguidos",()=>appState.bestStreak>=3],
+      ["⏱️","Foco real","Conclua um Pomodoro",()=>appState.xp>=20],
+    ];
+    function checkAchievements(){for(let i=0;i<achievementDefs.length;i++){const def=achievementDefs[i],key=`a${i}`;if(def[3]()&&!appState.unlocked[key]){appState.unlocked[key]=true;addXP(15,"conquista desbloqueada");showToast(`🏆 ${def[1]} desbloqueada!`,true)}}saveApp();}
+    function renderAchievements(){achievementList.innerHTML=achievementDefs.map((d,i)=>{const unlocked=!!appState.unlocked[`a${i}`];return `<div class="achievement ${unlocked?'unlocked':''}"><div class="badge">${d[0]}</div><strong>${d[1]}</strong><small>${d[2]}</small><div style="margin-top:7px;font-size:.66rem;font-weight:900;color:${unlocked?'#087744':'#8d9aa3'}">${unlocked?'DESBLOQUEADA':'BLOQUEADA'}</div></div>`}).join("");}
+    document.getElementById("openAchievements").onclick=()=>{renderAchievements();achievementsModal.classList.add("open");achievementsModal.setAttribute("aria-hidden","false");body.style.overflow="hidden"};
+    function closeAchievements(){achievementsModal.classList.remove("open");achievementsModal.setAttribute("aria-hidden","true");body.style.overflow=""};document.getElementById("closeAchievements").onclick=closeAchievements;achievementsModal.addEventListener("click",e=>{if(e.target===achievementsModal)closeAchievements()});
+
+    document.getElementById("closeFocus").onclick=()=>{focusMode.classList.remove("open");focusMode.setAttribute("aria-hidden","true")};
+    focusAction.onclick=()=>{focusAction.textContent=timer.running?"Pausar":"Iniciar"; if(timer.running)pauseTimer();else runTimer()};
+
+    function showToast(message,challenge=false){toast.textContent=message;toast.classList.add("show");if(challenge)toast.classList.add("challenge");clearTimeout(showToast.timer);showToast.timer=setTimeout(()=>{toast.classList.remove("show");toast.classList.remove("challenge")},1900)}
+    printBtn.addEventListener("click",()=>window.print());
+    resetBtn.addEventListener("click",()=>{if(!window.confirm("Deseja zerar todo o progresso, XP e estatísticas?"))return;storedProgress={};appState={xp:0,quizAttempts:0,quizCorrect:0,streak:0,bestStreak:0,lastStudyDate:null,dailyDone:null,unlocked:{}};saveProgress();saveApp();checks.forEach(c=>c.checked=false);updateDaily();updateDashboard();showToast("Progresso reiniciado.")});
+    document.addEventListener("keydown",e=>{if(e.key==="Escape"){if(quizModal.classList.contains("open"))closeQuiz();if(flashModal.classList.contains("open"))closeFlash();if(pomodoroModal.classList.contains("open"))closePomodoro();if(achievementsModal.classList.contains("open"))closeAchievements();if(videoModal.classList.contains("open"))closeVideoModal()}});
+    loadProgress(); updateDaily(); filterContent(); checkAchievements();
   </script>
 </body>
 </html>
